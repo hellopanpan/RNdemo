@@ -22,7 +22,7 @@ const SettingStack = createStackNavigator({
 });
 // tab
 const TabNavigator = createBottomTabNavigator({
-  Home: {
+  HomeTab: {
     screen: HomeStack,
     navigationOptions:({navigation}) => ({
       tabBarLabel:'我的首页'

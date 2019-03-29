@@ -5462,6 +5462,13 @@ react-native-safe-area-view@^0.13.0:
   resolved "http://registry.npm.taobao.org/react-native-screens/download/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
   integrity sha1-ehIDd7Uqqbu5TQuFQaAUAmvpKJs=
 
+react-native-swiper@^1.5.14:
+  version "1.5.14"
+  resolved "http://registry.npm.taobao.org/react-native-swiper/download/react-native-swiper-1.5.14.tgz#1c6f949ca377186300f972bb0f30d24062c899aa"
+  integrity sha1-HG+UnKN3GGMA+XK7DzDSQGLImao=
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-tab-view@^0.0.77:
   version "0.0.77"
   resolved "http://registry.npm.taobao.org/react-native-tab-view/download/react-native-tab-view-0.0.77.tgz#11ceb8e7c23100d07e628dc151b57797524d00d4"
