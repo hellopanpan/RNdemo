@@ -1,13 +1,38 @@
 import React from "react";
 import { View, Text, Button, StyleSheet,FlatList, TouchableOpacity} from "react-native";
+import { SafeAreaView } from 'react-navigation';
 import * as Api from '../api/index'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MyListItem from '../components/IndexListItem'
+class LogoTitle extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <View style={{flex: 1, justifyContent: "flex-start", paddingLeft: 20}}>
+        <Text>{this.props.navigation}</Text>
+        <Ionicons name={'ios-options'} size={40} onPress={() => this.props.navigationss.toggleDrawer()}></Ionicons>
+      </View>
+    );
+  }
+}
 export default class HomeScreen extends React.Component {
+  // static navigationOptions = {
+  //   title: 'nihao',
+  //   headerBackTitle: 'A much',
+  //   headerLeft: <LogoTitle ></LogoTitle>
+  // };
+  static navigationOptions = ({navigation}) => ({
+    title: 'nihao',
+    headerBackTitle: 'A much',
+    headerLeft: <LogoTitle navigationss={navigation}></LogoTitle>
+  });
   _keyExtractor = (item, index) => item._id;
   constructor(props) {
     super(props);
     this.state = {
+      flag: 1,
       isShowingText: 0 ,
       movies: [],
       selected: new Map()
@@ -56,14 +81,25 @@ export default class HomeScreen extends React.Component {
   render() {
     const data = this.props.data || "null";
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <FlatList style={{flex: 1}}
-          data={this.state.movies}
-          extraData={this.state}
-          keyExtractor={this._keyExtractor}
-          renderItem={this._renderItem}
-        />
-      </View>
+      <SafeAreaView style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <Text>{this.state.flag}</Text>
+          <FlatList style={{flex: 1}}
+            data={this.state.movies}
+            extraData={this.state}
+            keyExtractor={this._keyExtractor}
+            renderItem={this._renderItem}
+          />
+          <Button
+            title="Go back Home"
+            onPress={() => this.props.navigation.toggleDrawer()}
+          />
+          <Button
+            title="Go back go detail"
+            onPress={() => this.props.navigation.navigate('Details')}
+          />
+        </View>
+      </SafeAreaView>
     );
   }
 }

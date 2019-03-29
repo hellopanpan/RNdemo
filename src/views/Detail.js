@@ -1,6 +1,10 @@
 import React from "react";
 import { View, Text, Button} from "react-native";
 export default class Detail extends React.Component {
+  static navigationOptions = {
+    title: 'Details222',
+    headerBackTitle: null
+  };
   render() {
     const data = this.props.data || "null";
     const itemId = this.props.navigation.getParam('itemId', 'NO-ID');
@@ -12,7 +16,7 @@ export default class Detail extends React.Component {
         <Text>{otherParam}</Text>
         <Button
           title="Go back Home"
-          onPress={() => this.props.navigation.navigate('Home')}
+          onPress={() => this.props.navigation.toggleDrawer()}
         />
       </View>
     );

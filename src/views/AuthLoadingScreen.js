@@ -10,7 +10,7 @@ export default class App extends React.Component {
     )
   }
   _signInAsync = async () => {
-    this.props.navigation.navigate('App');
+    this.props.navigation.navigate('DrawerNavigator');
     // this.props.navigation.openDrawer();
   };
 }
