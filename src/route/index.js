@@ -5,18 +5,24 @@ import HomeScreen from '../views/HomeScreen'
 import Setting from '../views/Setting'
 import Detail from '../views/Detail'
 import AuthLoadingScreen from '../views/AuthLoadingScreen'
+import Pages from '../views/Pages'
 import Draw from '../views/draw'
 // 一般stack
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
-  Details: {
-    screen: Detail,
-    navigationOptions: () => ({
-      title: `A`,
-      headerBackTitle: 'A much',
-    }),
+    Details: {
+      screen: Detail,
+      navigationOptions: () => ({
+        title: `A`,
+        headerBackTitle: 'A much',
+      }),
+    }
+  },
+  {
+    mode: 'card',
+    headerMode: 'none',
   }
-});
+);
 const SettingStack = createStackNavigator({
   Setting: Setting
 });
@@ -33,6 +39,12 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions:({navigation}) => ({
       tabBarLabel:'Setting'
     })
+  },
+  Pages: {
+    screen: Pages,
+    navigationOptions:({navigation}) => ({
+      tabBarLabel:'Pages'
+    })
   }
 },
 {
@@ -41,13 +53,15 @@ const TabNavigator = createBottomTabNavigator({
       const { routeName } = navigation.state;
       let IconComponent = Ionicons;
       let iconName;
-      if (routeName === 'Home') {
+      if (routeName === 'HomeTab') {
         iconName = `ios-information-circle${focused ? '' : '-outline'}`;
         // Sometimes we want to add badges to some icons. 
         // You can check the implementation below.
         // IconComponent = HomeIconWithBadge; 
       } else if (routeName === 'Settings') {
         iconName = `ios-options`;
+      } else {
+        iconName = `ios-information-circle`;
       }
 
       // You can return any component that you like here!
