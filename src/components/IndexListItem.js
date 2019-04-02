@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text, Button, StyleSheet,FlatList, TouchableOpacity} from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-export default class MyListItem extends React.PureComponent {
+ 
+// 每一条
+class MyListItem extends React.PureComponent {
   _onPress = () => {
     this.props.onPressItem(this.props.id);
   };
@@ -41,8 +42,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 5,
-    paddingLeft: 10,
-    height: 40
   },
   text1: {
     color: '#666',
@@ -51,4 +50,44 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'nowrap'
   }
-})
+});
+
+//  列表
+export default class ListItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: new Map()
+    }
+  };
+   // 选择切换
+   _onPressItem = (id) => {
+    // updater functions are preferred for transactional updates
+    this.setState((state) => {
+      // copy the map rather than modifying state.
+      const selected = new Map(state.selected);
+      selected.set(id, !selected.get(id)); // toggle
+      return {selected};
+    });
+  };
+  render() {
+    return (
+      <View style={{height: 250}}>
+      <FlatList 
+        data={this.props.movies}
+        extraData={this.props}
+        keyExtractor={(item, index) => item._id}
+        renderSectionHeader={({item}) => <Text >{item.title}</Text>}
+        renderItem={({item}) => 
+          <MyListItem
+            id={item._id}
+            item={item}
+            onPressItem={this._onPressItem}
+            selected={!!this.state.selected.get(item._id)}
+            title={item.title}
+          />}
+      />
+    </View>
+    )
+  }
+}

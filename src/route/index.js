@@ -1,7 +1,7 @@
 import React from "react";
 import {createStackNavigator,createSwitchNavigator, createDrawerNavigator, createAppContainer, createBottomTabNavigator} from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import HomeScreen from '../views/HomeScreen'
+import HomeScreen from '../views/Home'
 import Setting from '../views/Setting'
 import Detail from '../views/Detail'
 import AuthLoadingScreen from '../views/AuthLoadingScreen'
@@ -111,6 +111,6 @@ export default AppContainer = createAppContainer(createSwitchNavigator(
     DrawerNavigator: DrawerNavigator
   },
   {
-    initialRouteName: 'AuthLoading',
+    initialRouteName: 'DrawerNavigator',
   }
 ));
