@@ -7,13 +7,16 @@ class MyListItem extends React.PureComponent {
   _onPress = () => {
     this.props.onPressItem(this.props.id);
   };
-
+  _edit = (id) => {
+    this.props.openModel(true)
+  };
   render() {
     const textColor = this.props.selected ? "skyblue" : "black";
     return (
-      <TouchableOpacity onPress={this._onPress} style={{flex: 1}}>
         <View style={styles.flexRow} >
-          <Ionicons name={"ios-checkbox"} size={26} style={{ color: textColor }}></Ionicons>
+          <TouchableOpacity onPress={this._onPress}>
+            <Ionicons name={"ios-checkbox"} size={26} style={{ color: textColor }}></Ionicons>
+          </TouchableOpacity>
           <Text style={[styles.text1,{flexWrap:'wrap'}]} numberOfLines={1}>
             {this.props.item.title}
           </Text>
@@ -26,11 +29,12 @@ class MyListItem extends React.PureComponent {
           <Text style={[styles.text1,{flexWrap:'wrap'}]} numberOfLines={1}>
             {this.props.item.learn}
           </Text>
-          <Text style={[styles.text1,{flexWrap:'wrap'}]} numberOfLines={1}>
-            {this.props.item.good}
-          </Text>
+          <TouchableOpacity onPress={this._edit.bind(this, this.props.item._id)}>
+            <Text style={[styles.text1,{flexWrap:'wrap', color: 'skyblue'}]} numberOfLines={1}>
+              编辑
+            </Text>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
     );
   }
 }
@@ -85,6 +89,7 @@ export default class ListItem extends React.Component {
             onPressItem={this._onPressItem}
             selected={!!this.state.selected.get(item._id)}
             title={item.title}
+            openModel={this.props.openModel}
           />}
       />
     </View>

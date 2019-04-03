@@ -7,6 +7,7 @@ import MyListItem from '../components/IndexListItem';
 import SwiperHome from '../components/swiperHome';
 import LogoTitle from '../components/logoTitle';
 import SwiperHomeTab from '../components/swiperHomeTab'
+import EditModal from '../components/editModel'
 export default class HomeScreen extends React.Component {
   static navigationOptions = ({navigation}) => ({
     title: 'nihao',
@@ -21,6 +22,7 @@ export default class HomeScreen extends React.Component {
       movies: [],
       selected: new Map(),
       text: '', 
+      modalVisible: false,
       switch: true
     };
   };
@@ -43,8 +45,15 @@ export default class HomeScreen extends React.Component {
     }).catch(e => {
       console.log('-----1133311-----')
     })
-  }
-  
+  };
+  // 打开弹窗
+  _openModel(value) {
+    this.setState({ modalVisible: value });
+  };
+  // 关闭弹窗
+  _changeIt(value) {
+    this.setState({ modalVisible: value });
+  };
   render() {
     const data = this.props.data || "null";
     return (
@@ -72,14 +81,14 @@ export default class HomeScreen extends React.Component {
             <View style={{marginTop: 10}}>
               <SwiperHomeTab />
             </View>
-            <View >
-              <Switch value={this.state.switch} trackColor={{false: 'yellow', true: 'green'}} ios_backgroundColor={'yellow'} onValueChange={(value) => this.setState({switch: value})}></Switch>
-            </View>
             <View style={{marginTop: 10}}>
-              <MyListItem movies={this.state.movies}></MyListItem>
+              <MyListItem movies={this.state.movies} openModel={this._openModel.bind(this)}></MyListItem>
             </View>
           </View>
         </ScrollView>
+        <EditModal modalVisible={this.state.modalVisible} changeValue={this._changeIt.bind(this)}>
+          <Text style={{textAlign: 'center'}} onPress={this._alert}>Hello World!</Text>
+        </EditModal>
       </SafeAreaView>  
     );
   }
