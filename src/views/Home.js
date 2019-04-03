@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Button, Switch,ScrollView, Picker, StyleSheet,TextInput, FlatList, SectionList, Image, TouchableOpacity} from "react-native";
 import { SafeAreaView } from 'react-navigation';
+import {connect} from "react-redux"
 import * as Api from '../api/index'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MyListItem from '../components/IndexListItem';
@@ -8,7 +9,8 @@ import SwiperHome from '../components/swiperHome';
 import LogoTitle from '../components/logoTitle';
 import SwiperHomeTab from '../components/swiperHomeTab'
 import EditModal from '../components/editModel'
-export default class HomeScreen extends React.Component {
+
+class HomeScreen extends React.Component {
   static navigationOptions = ({navigation}) => ({
     title: 'nihao',
     headerBackTitle: 'A much',
@@ -93,6 +95,10 @@ export default class HomeScreen extends React.Component {
     );
   }
 }
+export default connect((state,props)=>{
+  return state
+})(HomeScreen);
+
 const styles = StyleSheet.create({
   top: {
     flexDirection: 'row',

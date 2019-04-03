@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, Modal,Switch, TouchableHighlight,Picker, PickerIOS, TouchableOpacity,  Button} from "react-native";
 import {DrawerActions} from 'react-navigation';
-import { WebView }  from 'react-native-webview'
 import SettingModal from '../components/settingModal'
 export default class HomeScreen2 extends React.Component {
   static navigationOptions = ({navigation,screenProps}) => ({  

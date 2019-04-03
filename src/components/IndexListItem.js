@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux"
 import { View, Text, Button, StyleSheet,FlatList, TouchableOpacity} from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
  
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
 });
 
 //  列表
-export default class ListItem extends React.Component {
+class ListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -96,3 +97,4 @@ export default class ListItem extends React.Component {
     )
   }
 }
+export default connect((state, props) => {return state })(ListItem);
