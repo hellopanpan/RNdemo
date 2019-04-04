@@ -8,8 +8,8 @@ class MyListItem extends React.PureComponent {
   _onPress = () => {
     this.props.onPressItem(this.props.id);
   };
-  _edit = (id) => {
-    this.props.openModel(true)
+  _edit = (item) => {
+    this.props.openModel(true, item)
   };
   render() {
     const textColor = this.props.selected ? "skyblue" : "black";
@@ -30,7 +30,7 @@ class MyListItem extends React.PureComponent {
           <Text style={[styles.text1,{flexWrap:'wrap'}]} numberOfLines={1}>
             {this.props.item.learn}
           </Text>
-          <TouchableOpacity onPress={this._edit.bind(this, this.props.item._id)}>
+          <TouchableOpacity onPress={this._edit.bind(this, this.props.item)}>
             <Text style={[styles.text1,{flexWrap:'wrap', color: 'skyblue'}]} numberOfLines={1}>
               编辑
             </Text>

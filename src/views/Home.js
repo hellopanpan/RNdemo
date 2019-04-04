@@ -25,7 +25,8 @@ class HomeScreen extends React.Component {
       selected: new Map(),
       text: '', 
       modalVisible: false,
-      switch: true
+      switch: true,
+      selectItem: {}
     };
   };
   componentDidMount() {
@@ -49,8 +50,11 @@ class HomeScreen extends React.Component {
     })
   };
   // 打开弹窗
-  _openModel(value) {
-    this.setState({ modalVisible: value });
+  _openModel(value, item) {
+    this.setState({
+      modalVisible: value,
+      selectItem: item
+    });
   };
   // 关闭弹窗
   _changeIt(value) {
@@ -88,7 +92,7 @@ class HomeScreen extends React.Component {
             </View>
           </View>
         </ScrollView>
-        <EditModal modalVisible={this.state.modalVisible} changeValue={this._changeIt.bind(this)}>
+        <EditModal modalVisible={this.state.modalVisible} form={this.state.selectItem} changeValue={this._changeIt.bind(this)}>
           <Text style={{textAlign: 'center'}} onPress={this._alert}>Hello World!</Text>
         </EditModal>
       </SafeAreaView>  

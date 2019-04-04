@@ -8,3 +8,11 @@ export const getList = (params) => {
     data: params
   })
 }
+// 编辑
+export const updateList = (params) => {
+  return fetchT({
+    url: '/webtest/pages/update',
+    method: 'POST',
+    data: params
+  })
+}
