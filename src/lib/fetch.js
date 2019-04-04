@@ -13,7 +13,7 @@ export default options => {
     function request() {
       let opts = Object.assign({
         method: 'POST',
-        header: {
+        headers: {
           'content-type': options.form ? 'application/x-www-form-urlencoded' : 'application/json'
         }
       }, options)
