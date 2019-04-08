@@ -7,6 +7,7 @@ import Detail from '../views/Detail'
 import AuthLoadingScreen from '../views/AuthLoadingScreen'
 import Pages from '../views/Pages'
 import Draw from '../views/draw'
+import Person from '../views/personal'
 // 一般stack
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -28,10 +29,22 @@ const SettingStack = createStackNavigator({
 });
 // tab
 const TabNavigator = createBottomTabNavigator({
+  Person: {
+    screen: Person,
+    navigationOptions:({navigation}) => ({
+      tabBarLabel:'Person'
+    })
+  },
   HomeTab: {
     screen: HomeStack,
     navigationOptions:({navigation}) => ({
       tabBarLabel:'我的首页'
+    })
+  },
+  Pages: {
+    screen: Pages,
+    navigationOptions:({navigation}) => ({
+      tabBarLabel:'Pages'
     })
   },
   Settings: {
@@ -40,12 +53,6 @@ const TabNavigator = createBottomTabNavigator({
       tabBarLabel:'Setting'
     })
   },
-  Pages: {
-    screen: Pages,
-    navigationOptions:({navigation}) => ({
-      tabBarLabel:'Pages'
-    })
-  }
 },
 {
   defaultNavigationOptions: ({ navigation }) => ({
@@ -60,8 +67,10 @@ const TabNavigator = createBottomTabNavigator({
         // IconComponent = HomeIconWithBadge; 
       } else if (routeName === 'Settings') {
         iconName = `ios-options`;
-      } else {
-        iconName = `ios-information-circle`;
+      } else if (routeName === 'Pages'){
+        iconName = `ios-cube`;
+      } else if (routeName == 'Person') {
+        iconName = 'ios-contact'
       }
 
       // You can return any component that you like here!

@@ -71,5 +71,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>需要使用相机2</string>
+	<key>NSCameraUsageDescription</key>
+	<string>需要使用相机</string>
 </dict>
 </plist>
