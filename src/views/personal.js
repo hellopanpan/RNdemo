@@ -20,11 +20,9 @@ export default class HomeScreen2 extends React.Component {
     }).then(images => {
       console.log(images);
       // alert(images)
-      for (var image in images) {
-        alert(image)
-      }
+      
       this.setState({
-        picSource: images.filename
+        picSource: {uri: images[0].sourceURL}
       })
     });
   };
@@ -32,10 +30,6 @@ export default class HomeScreen2 extends React.Component {
     const data = this.props.data || "null";
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Image
-          style={{width: 50, height: 50, borderRadius: 25}}
-          source={this.state.picSource}
-        />
         <TouchableOpacity
           onPress={() => {
             this.setModalVisible(true);
@@ -46,7 +40,10 @@ export default class HomeScreen2 extends React.Component {
         <TouchableOpacity
           onPress={this._getPic.bind(this)}
         >
-          <Text>get pic</Text>
+          <Image
+            style={{width: 50, height: 50, borderRadius: 25}}
+            source={this.state.picSource}
+          />
         </TouchableOpacity>
       </View>
     );

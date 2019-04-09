@@ -31,7 +31,7 @@ class HomeScreen extends React.Component {
   };
   componentDidMount() {
     // get list
-    this._getList()
+    // this._getList()
   };
   // 获取list 数据
   _getList = () => {
