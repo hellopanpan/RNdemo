@@ -90,7 +90,12 @@ const TabNavigator = createBottomTabNavigator({
     activeTintColor: 'tomato',
     inactiveTintColor: 'gray',
     swipeEnabled: true,
-    animationEnabled: true
+    animationEnabled: true,
+    style: { // 整体TabBar的样式
+      backgroundColor: "rgba(0,0,0,0.1)",
+      height: 54,
+      left: 0
+    }
   },
 });
 

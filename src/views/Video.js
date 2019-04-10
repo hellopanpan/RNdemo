@@ -4,6 +4,7 @@ import {DrawerActions} from 'react-navigation';
 import SettingModal from '../components/settingModal';
 import ImagePicker from 'react-native-image-crop-picker';
 import Video from 'react-native-video';
+import VideoList from '../components/videoList'
 export default class HomeScreen2 extends React.Component {
   static navigationOptions = ({navigation,screenProps}) => ({  
       headerTitle: '企业服务'
@@ -60,41 +61,7 @@ export default class HomeScreen2 extends React.Component {
     const data = this.props.data || "null";
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <TouchableWithoutFeedback style={{width: '100%', height: '100%'}}
-          onPressIn={this.onPressIn.bind(this)}
-          onPressOut={this.onPressOut.bind(this)}
-        >
-          <Video
-            source={this.state.videoSource}
-            ref={(ref) => {
-              this.player = ref
-            }}
-            resizeMode="cover" 
-            paused={this.state.paused}
-            repeat={true}                                   // Store reference
-            onBuffer={this.onBuffer}                // Callback when remote video is buffering
-            onError={this.videoError}               // Callback when video cannot be loaded
-            style={styles.backgroundVideo}   // [iOsS]进度控制，每250ms调用一次，以获取视频播放的进度
-            progressUpdateInterval={250.0}
-            onProgress={this.setTime.bind(this)} 
-            volume={this.state.volume}
-            playInBackground={true} 
-          />
-        </TouchableWithoutFeedback>
-        <TouchableOpacity
-          onPress={() => this.setState({paused: !this.state.paused})}
-        >
-          <Text >paused</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => this.setState({volume: (this.state.volume? 0: 1)})}
-        >
-          <Text >volume</Text>
-        </TouchableOpacity>
-        <Text>{this.state.progress}</Text>
-        <View style={{width: 300,height: 3, backgroundColor: 'gray'}}>
-          <View style={{width: this.state.progress+'%', height: 3, backgroundColor: 'skyblue'}}></View>
-        </View>
+        <VideoList></VideoList>
       </View>
     );
   }
