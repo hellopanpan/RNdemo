@@ -28,8 +28,7 @@ export default class HomeScreen2 extends React.Component {
         <TouchableOpacity
           onPress={() => {
             this.setModalVisible(true);
-          }}
-        >
+          }}>
           <Text>Show Modal</Text>
         </TouchableOpacity>
       </View>

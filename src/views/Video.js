@@ -1,5 +1,5 @@
 import React from "react";
-import { View,StyleSheet, Image, Text, Modal,Switch, TouchableHighlight,Picker, PickerIOS, TouchableOpacity,  Button} from "react-native";
+import { View,StyleSheet, Image, Text, Modal,Switch, TouchableWithoutFeedback, TouchableHighlight,Picker, PickerIOS, TouchableOpacity,  Button} from "react-native";
 import {DrawerActions} from 'react-navigation';
 import SettingModal from '../components/settingModal';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -16,7 +16,9 @@ export default class HomeScreen2 extends React.Component {
       videoSource: require('../assets/images/3.mp4'),
       paused: false,
       volume: 1,
-      progress: 0
+      progress: 0,
+      PressInX: 0,
+      PressInY: 0
     };
   };
   setTime(e) {
@@ -36,26 +38,32 @@ export default class HomeScreen2 extends React.Component {
       })
     });
   };
+  onPressIn(e) {
+    this.setState({
+      PressInX: e.nativeEvent.locationX,
+      PressInY: e.nativeEvent.locationY
+    })
+  };
+  onPressOut(e) {
+    let inx = this.state.PressInX;
+    let iny = this.state.PressInY;
+    let outx = e.nativeEvent.locationX;
+    let outy = e.nativeEvent.locationY;
+    let dis = (outy-iny)*(outy-iny) + (outx-inx) * (outx-inx);
+    if (dis > 10) {
+      alert('next')
+    }else {
+      this.setState({paused: !this.state.paused})
+    }
+  };
   render() {
     const data = this.props.data || "null";
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <TouchableOpacity
-          onPress={() => {
-            this.setModalVisible(true);
-          }}
+        <TouchableWithoutFeedback style={{width: '100%', height: '100%'}}
+          onPressIn={this.onPressIn.bind(this)}
+          onPressOut={this.onPressOut.bind(this)}
         >
-          <Text>Show Modal</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={this._getPic.bind(this)}
-        >
-          <Image
-            style={{width: 50, height: 50, borderRadius: 25}}
-            source={this.state.picSource}
-          />
-        </TouchableOpacity>
-        <View style={{width: 200, height: 400}}>
           <Video
             source={this.state.videoSource}
             ref={(ref) => {
@@ -72,7 +80,7 @@ export default class HomeScreen2 extends React.Component {
             volume={this.state.volume}
             playInBackground={true} 
           />
-        </View>
+        </TouchableWithoutFeedback>
         <TouchableOpacity
           onPress={() => this.setState({paused: !this.state.paused})}
         >

@@ -7,7 +7,8 @@ import Detail from '../views/Detail'
 import AuthLoadingScreen from '../views/AuthLoadingScreen'
 import Pages from '../views/Pages'
 import Draw from '../views/draw'
-import Person from '../views/personal'
+import Person from '../views/Personal'
+import Video from '../views/Video'
 // 一般stack
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -29,6 +30,12 @@ const SettingStack = createStackNavigator({
 });
 // tab
 const TabNavigator = createBottomTabNavigator({
+  Video: {
+    screen: Video,
+    navigationOptions:({navigation}) => ({
+      tabBarLabel:'Shot video'
+    })
+  },
   Person: {
     screen: Person,
     navigationOptions:({navigation}) => ({
@@ -71,6 +78,8 @@ const TabNavigator = createBottomTabNavigator({
         iconName = `ios-cube`;
       } else if (routeName == 'Person') {
         iconName = 'ios-contact'
+      } else if (routeName == 'Video') {
+        iconName = 'ios-flame'
       }
 
       // You can return any component that you like here!
