@@ -5,7 +5,6 @@ import Swiper from 'react-native-swiper';
 import * as Api from '../api/index'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Video from 'react-native-video';
-import VedioSwiper from '../components/vedioSwiper'
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +20,7 @@ export default class HomeScreen extends React.Component {
     return (
       <SafeAreaView style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-          <VedioSwiper></VedioSwiper>
+          <Text>pages</Text>
         </View>
       </SafeAreaView>
     );

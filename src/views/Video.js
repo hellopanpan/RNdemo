@@ -4,7 +4,7 @@ import {DrawerActions} from 'react-navigation';
 import SettingModal from '../components/settingModal';
 import ImagePicker from 'react-native-image-crop-picker';
 import Video from 'react-native-video';
-import VideoList from '../components/videoList'
+import VedioSwiper from '../components/vedioSwiper'
 export default class HomeScreen2 extends React.Component {
   static navigationOptions = ({navigation,screenProps}) => ({  
       headerTitle: '企业服务'
@@ -61,7 +61,7 @@ export default class HomeScreen2 extends React.Component {
     const data = this.props.data || "null";
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <VideoList></VideoList>
+        <VedioSwiper></VedioSwiper>
       </View>
     );
   }
