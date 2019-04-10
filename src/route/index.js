@@ -7,7 +7,7 @@ import Detail from '../views/Detail'
 import AuthLoadingScreen from '../views/AuthLoadingScreen'
 import Pages from '../views/Pages'
 import Draw from '../views/draw'
-import Person from '../views/Personal'
+import Person from '../views/personal'
 import Video from '../views/Video'
 // 一般stack
 const HomeStack = createStackNavigator({
