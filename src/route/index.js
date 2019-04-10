@@ -30,6 +30,12 @@ const SettingStack = createStackNavigator({
 });
 // tab
 const TabNavigator = createBottomTabNavigator({
+  Pages: {
+    screen: Pages,
+    navigationOptions:({navigation}) => ({
+      tabBarLabel:'Pages'
+    })
+  },
   Video: {
     screen: Video,
     navigationOptions:({navigation}) => ({
@@ -46,12 +52,6 @@ const TabNavigator = createBottomTabNavigator({
     screen: HomeStack,
     navigationOptions:({navigation}) => ({
       tabBarLabel:'我的首页'
-    })
-  },
-  Pages: {
-    screen: Pages,
-    navigationOptions:({navigation}) => ({
-      tabBarLabel:'Pages'
     })
   },
   Settings: {

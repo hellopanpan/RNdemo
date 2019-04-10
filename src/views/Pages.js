@@ -4,60 +4,76 @@ import { SafeAreaView } from 'react-navigation';
 import Swiper from 'react-native-swiper';
 import * as Api from '../api/index'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Video from 'react-native-video';
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       flag: 1,
       isShow: false,
-      items:[]
+      items:[],
+      selectIndex: 0
     };
   };
   componentDidMount() {
     this._getPic()
   };
+  setTime(e) {
+    // console.log(e)
+    let progress = e.currentTime / e.playableDuration * 100
+    this.setState({progress})
+  };
   // get pic
   _getPic = () => {
     var item;
-    for (let i = 0; i < 3; i++){
-        switch (i){
-            case 0:{
-                item = 'http://blogdailyherald.com/wp-content/uploads/2013/04/382065_560557460633306_930109857_n.jpg';
-                break;
-            }
-            case 1:{
-                item = 'http://img0.pclady.com.cn/pclady/pet/choice/cat/1701/6.jpg';
-                break;
-            }
-            default:{
-                item = 'https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/3812b31bb051f819dc048662dbb44aed2e73e7f1.jpg';
-                break;
-            }
-        }
-        this.state.items.push(item);
-
-    }
-    console.log(this.state.items + '111');
+    item = [
+      require('../assets/images/2.mp4'),
+      require('../assets/images/3.mp4'),
+      require('../assets/images/2.mp4'),
+      require('../assets/images/3.mp4')
+    ]
     this.setState({
         isShow: true,
-        items: this.state.items
+        items: item
+    })
+  };
+  indexChange(index) {
+    this.setState({
+      selectIndex: index
     })
   };
   // 轮播图
   _getSwiper() {
     let swperStr = null;
     let ScreenWidth = 375;
-    let H = 199;
+    let H = '100%';
     if (this.state.isShow) {
       swperStr = <Swiper autoplay = {false} showsPagination = {true} dotColor="white"
-        activeDotColor='yellow' horizontal={true} style={{height: H, position: 'relative'}}>
+        loop={true}
+        onIndexChanged={this.indexChange.bind(this)}
+        activeDotColor='yellow' horizontal={false} >
           {
             this.state.items.map((item, index) => {
               console.log(item, index)
-              //cover: 等比例放大; center:不变; contain:不变; stretch:填充;
               return (
                 <View key = {index} style={{height: H, position: 'relative',justifyContent: "flex-start"}}>
-                  <Image style={{height: H}}  resizeMode='cover' source={{uri: item}}/>
+                  <Text>{index} \\ {this.state.selectIndex}</Text>
+                  <Video
+                    source={item}
+                    ref={(ref) => {
+                      this.player = ref
+                    }}
+                    resizeMode="cover" 
+                    paused={ true}
+                    repeat={true}                                   // Store reference
+                    onBuffer={this.onBuffer}                // Callback when remote video is buffering
+                    onError={this.videoError}               // Callback when video cannot be loaded
+                    style={styles.backgroundVideo}   // [iOsS]进度控制，每250ms调用一次，以获取视频播放的进度
+                    progressUpdateInterval={250.0}
+                    onProgress={this.setTime.bind(this)} 
+                    volume={this.state.volume}
+                    playInBackground={true} 
+                  />
                 </View>    
               )
             })
@@ -74,13 +90,21 @@ export default class HomeScreen extends React.Component {
     return (
       <SafeAreaView style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-          <View style={{height: 199}}>
+          <View style={{height: '100%'}}>
             {swperStr}
           </View>
-          
-          <Text>pages</Text>
         </View>
       </SafeAreaView>
     );
   }
 }
+const styles = StyleSheet.create({
+  backgroundVideo: {
+    position: 'absolute',
+    backgroundColor: 'green',
+    top: 40,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  }
+});
