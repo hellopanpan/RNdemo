@@ -1,38 +1,109 @@
 import React from "react";
-import { View, Text, Button, StyleSheet,FlatList, Image, TouchableOpacity} from "react-native";
+import { View, Text, Button, Switch,ScrollView, Picker, StyleSheet,TextInput, FlatList, SectionList, Image, TouchableOpacity} from "react-native";
 import { SafeAreaView } from 'react-navigation';
-import Swiper from 'react-native-swiper';
+import {connect} from "react-redux"
 import * as Api from '../api/index'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Video from 'react-native-video';
-export default class HomeScreen extends React.Component {
+
+import ShopHeader from '../components/shop/shopHeader'
+import ShopSort from '../components/shop/shopSort'
+import ShopList from '../components/shop/shopList'
+import ShopBottom from '../components/shop/shopBottom'
+import shopdata from '../components/shop/shopdata'
+
+class HomeScreen extends React.Component {
+  static navigationOptions = ({navigation}) => ({
+    header: null
+  });
   constructor(props) {
     super(props);
     this.state = {
       flag: 1,
-      isShow: false,
-      items:[],
-      selectIndex: 0
+      isShowingText: 0 ,
+      movies: [],
+      selected: new Map(),
+      text: '', 
+      modalVisible: false,
+      switch: true,
+      selectItem: {}
     };
   };
-  
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'INITSHOP',
+      list: shopdata
+    })
+  };
+  // 去往结算页
+  goNext() {
+    this.props.navigation.navigate('ShopComfirm')
+  };
   render() {
+    const data = this.props.data || "null";
     return (
-      <SafeAreaView style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-          <Text>pages</Text>
+      <SafeAreaView style={{flex: 1, height: '100%'}}>
+        <ShopHeader></ShopHeader>
+        <View style={{backgroundColor: 'blue', flex: 1, display: 'flex', flexDirection: 'row'}}>
+          <View style={styles.left}>
+            <ShopSort></ShopSort>
+          </View>
+          <View style={styles.right}>
+            <ShopList></ShopList>
+          </View>
         </View>
-      </SafeAreaView>
+        <ShopBottom goNext={this.goNext.bind(this)}></ShopBottom>
+      </SafeAreaView>  
     );
   }
 }
+export default connect((state,props)=>{
+  return state
+})(HomeScreen);
+
 const styles = StyleSheet.create({
-  backgroundVideo: {
-    position: 'absolute',
-    backgroundColor: 'green',
-    top: 40,
-    left: 0,
-    bottom: 0,
-    right: 0,
+  left: {
+    width: 90, height: '100%',
+    backgroundColor: '#efefef'
+  },
+  right:{
+    backgroundColor: '#fff',
+    flex: 1
+  },
+  top: {
+    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "flex-start",
+    width: 160,
+    height: 40
+  },
+  topIcon: {
+    color: '#3880ff'
+  },
+  topText: {
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  inputTop: {
+    height: 40,
+    minWidth: 200,
+    backgroundColor: "#999",
+    borderRadius: 20,
+    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "flex-start",
+    padding: 10
+  },
+  inputTopText: {
+    color: '#fff',
+    marginRight: 10,
+    paddingLeft: 10
+  },
+  inputTopInput: {
+    height: 20,
+    borderColor: null , 
+    borderWidth:0,
+    padding: 0, 
+    flex: 1,
+    color: '#fff'
   }
-});
+})

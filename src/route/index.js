@@ -9,6 +9,7 @@ import Pages from '../views/Pages'
 import Draw from '../views/draw'
 import Person from '../views/personal'
 import Video from '../views/Video'
+import shopComfirm from '../views/shopComfirm'
 // 一般stack
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -26,11 +27,22 @@ const HomeStack = createStackNavigator({
   }
 );
 const SettingStack = createStackNavigator({
-  Setting: Setting
+    Setting: Setting
 });
+ const PageStack = createStackNavigator({
+    Pages: Pages,
+    ShopComfirm: shopComfirm,
+    
+    
+ })
 // tab
 const TabNavigator = createBottomTabNavigator({
-  
+  Pages: {
+    screen: PageStack,
+    navigationOptions:({navigation}) => ({
+      tabBarLabel:'Pages'
+    })
+  },
   Video: {
     screen: Video,
     navigationOptions:({navigation}) => ({
@@ -43,12 +55,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarLabel:'Person'
     })
   },
-  Pages: {
-    screen: Pages,
-    navigationOptions:({navigation}) => ({
-      tabBarLabel:'Pages'
-    })
-  },
+  
   HomeTab: {
     screen: HomeStack,
     navigationOptions:({navigation}) => ({
