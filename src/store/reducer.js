@@ -53,6 +53,14 @@ const shoplist = (state = [], action) => {
         }
       })
       return statecopy3;
+    case 'REMOVESHOPCOUNT': 
+      let statecopy4 = [].concat(state)
+      statecopy4.map(items => {
+        items.childs.map(item => {
+          item.count = 0
+        })
+      })
+      return statecopy4;
     default:
       return state;
   }

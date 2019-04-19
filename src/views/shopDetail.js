@@ -115,6 +115,8 @@ const styles = StyleSheet.create({
   goodstitle: {
     width: '100%',
     marginBottom: 15,
+    lineHeight: 20,
+    fontSize: 14,
   },
   goodsbottom: {
     width: '100%',

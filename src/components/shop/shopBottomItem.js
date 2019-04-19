@@ -27,14 +27,9 @@ class SortItem extends Component {
   render() {
     return (
       <View style={styles.item}>
-        <TouchableOpacity onPress={this._onPress}>
-          <Image source={require('../../assets/images/shop.jpg')} style={styles.goodspic}></Image>
-        </TouchableOpacity>
         <View style={styles.goodsright}>
-          <TouchableOpacity onPress={this._onPress}>
-            <Text style={styles.goodstitle} numberOfLines={2} ellipsizeMode="tail">{this.props.item.name}</Text>
-          </TouchableOpacity>
           <View style={styles.goodsbottom}>
+            <Text style={styles.goodstitle} numberOfLines={1} ellipsizeMode="tail">{this.props.item.name}</Text>
             <Text style={styles.goodsprice}>￥{this.props.item.price}</Text>
             <View style={styles.btns}>
               <TouchableOpacity style={styles.reducebtn} onPress={this._reduceBtn.bind(this, this.props.item._id)}>
@@ -68,7 +63,7 @@ const styles = StyleSheet.create({
   },
   item: {
     width: '100%',
-    height: 100,
+    height: 40,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -92,9 +87,7 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   goodstitle: {
-    lineHeight: 20,
-    fontSize: 14,
-    marginBottom: 20,
+    width: 200,
   },
   goodsbottom: {
     flexDirection: 'row',
