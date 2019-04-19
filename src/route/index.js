@@ -5,11 +5,12 @@ import HomeScreen from '../views/Home'
 import Setting from '../views/Setting'
 import Detail from '../views/Detail'
 import AuthLoadingScreen from '../views/AuthLoadingScreen'
-import Pages from '../views/Pages'
+import Shop from '../views/Shop'
 import Draw from '../views/draw'
 import Person from '../views/personal'
 import Video from '../views/Video'
 import shopComfirm from '../views/shopComfirm'
+import shopDetail from '../views/shopDetail'
 // 一般stack
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -30,9 +31,9 @@ const SettingStack = createStackNavigator({
     Setting: Setting
 });
  const PageStack = createStackNavigator({
-    Pages: Pages,
+    Shop: Shop,
     ShopComfirm: shopComfirm,
-    
+    ShopDetail: shopDetail
     
  })
 // tab

@@ -38,6 +38,10 @@ class HomeScreen extends React.Component {
   goNext() {
     this.props.navigation.navigate('ShopComfirm')
   };
+  // 详情
+  goDetail(item) {
+    this.props.navigation.navigate('ShopDetail',{item: item})
+  };
   render() {
     const data = this.props.data || "null";
     return (
@@ -48,7 +52,7 @@ class HomeScreen extends React.Component {
             <ShopSort></ShopSort>
           </View>
           <View style={styles.right}>
-            <ShopList></ShopList>
+            <ShopList goDetail={this.goDetail.bind(this)}></ShopList>
           </View>
         </View>
         <ShopBottom goNext={this.goNext.bind(this)}></ShopBottom>

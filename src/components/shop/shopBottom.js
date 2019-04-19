@@ -19,6 +19,20 @@ class shopBottom extends Component {
         price += (item2.count * item2.price)
       })
     })
+    let gobuy = null
+    if (numall > 0) {
+      gobuy = <TouchableOpacity onPress={this.props.goNext}>
+        <View style={styles.btns}>
+          <Text style={styles.btnsText}>去结算</Text>
+        </View>
+      </TouchableOpacity>
+    } else {
+      gobuy = <TouchableOpacity >
+        <View style={[styles.btns, styles.btnno]}>
+          <Text style={styles.btnsText}>去结算</Text>
+        </View>
+      </TouchableOpacity>
+    }
     return (
       <View style={styles.wrap}>
         <View style={styles.shop}>
@@ -31,11 +45,7 @@ class shopBottom extends Component {
           <Text>合计： ￥{price}</Text>
           <Text style={styles.text001}>已达起售数量</Text>
         </View>
-        <TouchableOpacity onPress={this.props.goNext}>
-          <View style={styles.btns}>
-            <Text style={styles.btnsText}>去结算</Text>
-          </View>
-        </TouchableOpacity>
+        { gobuy }
       </View>
     );
   }
@@ -97,6 +107,9 @@ const styles = StyleSheet.create({
     lineHeight: 40,
     fontSize: 18,
     color: '#fff'
+  },
+  btnno: {
+    backgroundColor: 'gray',
   },
   text001: {
     fontSize: 12,

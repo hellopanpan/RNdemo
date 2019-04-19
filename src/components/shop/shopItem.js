@@ -10,7 +10,7 @@ class SortItem extends Component {
     };
   }
   _onPress = () => {
-    this.props.onPressItem(this.props.item._id);
+    this.props.onPressItem(this.props.item);
   };
   _reduceBtn(id) {
     this.props.dispatch({

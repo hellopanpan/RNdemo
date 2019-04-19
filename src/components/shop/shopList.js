@@ -44,18 +44,8 @@ class shopSort extends Component {
       <Text style={styles.footertext}>"panpan 之家" 技术支持</Text>
     )
   };
-  _onPressItem(id) {
-    let sorts = this.state.sorts
-    sorts.map(item => {
-      item.active = false
-      if (item._id == id) {
-        item.active = true
-      }
-    })
-    console.log(sorts)
-    this.setState({
-      sorts
-    })
+  _onPressItem(item) {
+    this.props.goDetail(item)
   };
   _press() {
     this.props.dispatch({type: 'ADDSHOP'})
@@ -78,7 +68,7 @@ class shopSort extends Component {
         ListHeaderComponent={this.header}
         ListFooterComponent={this.footer}
         renderItem={({item}) =>
-          <SortItem item={item} onPressItem={this._onPressItem.bind(this)}></SortItem>  
+          <SortItem item={item} onPressItem={this._onPressItem.bind(this)} ></SortItem>  
         }
       />
       </View>

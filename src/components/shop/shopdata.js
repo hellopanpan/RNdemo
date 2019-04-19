@@ -1,7 +1,7 @@
 export default [{
   _id: '1',
   name: '一元专区',
-  active: false,
+  active: true,
   childs: [
     {
       _id: '11',
@@ -29,7 +29,7 @@ export default [{
 {
   _id: '2',
   name: '休闲零食',
-  active: true,
+  active: false,
   childs: [
     {
       _id: '21',
@@ -47,6 +47,20 @@ export default [{
     },
     {
       _id: '23',
+      name: '乳制品梦百合零压大床房，重庆北站，爱琴海,梦百合零压大床房，重庆北站，爱琴海',
+      price: 5,
+      count: 0,
+      active: false
+    },
+    {
+      _id: '24',
+      name: '乳制品梦百合零压大床房，重庆北站，爱琴海,梦百合零压大床房，重庆北站，爱琴海',
+      price: 5,
+      count: 0,
+      active: false
+    },
+    {
+      _id: '25',
       name: '乳制品梦百合零压大床房，重庆北站，爱琴海,梦百合零压大床房，重庆北站，爱琴海',
       price: 5,
       count: 0,
@@ -75,6 +89,13 @@ export default [{
     },
     {
       _id: '33',
+      name: '乳制品梦百合零压大床房，重庆北站，爱琴海,梦百合零压大床房，重庆北站，爱琴海',
+      price: 5,
+      count: 0,
+      active: false
+    },
+    {
+      _id: '34',
       name: '乳制品梦百合零压大床房，重庆北站，爱琴海,梦百合零压大床房，重庆北站，爱琴海',
       price: 5,
       count: 0,
