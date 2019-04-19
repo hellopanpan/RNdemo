@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text ,StyleSheet,TouchableWithoutFeedback,ScrollView} from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import {connect} from "react-redux"
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Location from '../components/comfirm/location'
@@ -17,18 +18,20 @@ class shopName extends Component {
 
   render() {
     return (
-      <View style={{height: '100%',flex: 1,backgroundColor: '#efefef', }}>
-        <ScrollView style={{flex: 1}}>
-          <View style={styles.wrap}>
-            <Location></Location>
-            <List></List>
+      <SafeAreaView style={{height: '100%',flex: 1,backgroundColor: '#efefef',}}>
+        <View style={{height: '100%',flex: 1,backgroundColor: '#efefef', }}>
+          <ScrollView style={{flex: 1}}>
+            <View style={styles.wrap}>
+              <Location></Location>
+              <List></List>
+            </View>
+          </ScrollView>
+          
+          <View style={styles.bottom}>
+            <ShopYes></ShopYes>
           </View>
-        </ScrollView>
-        
-        <View style={styles.bottom}>
-          <ShopYes></ShopYes>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

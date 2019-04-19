@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   shop: {
     height: 50,
     width: 50,
-    backgroundColor: '#099',
+    backgroundColor: 'tomato',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',

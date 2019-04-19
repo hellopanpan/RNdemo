@@ -33,7 +33,7 @@ class shopSort extends Component {
   };
   header(){
     return (
-      <View>
+      <View style={{padding: 10}}>
         <Text style={styles.header}>最新活动</Text>
         <Image source={require('../../assets/images/shop.jpg')} style={styles.banner}></Image>
       </View>
@@ -77,13 +77,12 @@ class shopSort extends Component {
 }
 const styles = StyleSheet.create({
   wrap: {
-    padding: 10,
     height: '100%',
   },
   header: {
     fontSize: 16,
     fontWeight: "400",
-    marginBottom: 10
+    marginBottom: 10,
   },
   banner: {
     height: 90,

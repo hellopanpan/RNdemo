@@ -21,7 +21,7 @@ class List extends Component {
     return (
       <View style={styles.wrap}>
           {select.map(item => {
-            return <View style={styles.item}>
+            return <View style={styles.item} key={item._id} >
               <Image source={require('../../assets/images/shop.jpg')} style={styles.goodspic}></Image>
               <View style={styles.text}>
                 <Text numberOfLines={1} ellipsizeMode="tail" style={styles.text01}>{item.name}</Text>
@@ -55,12 +55,13 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   text: {
-    width: 220,
+    width: 210,
     margin: 10
   },
   price: {
     fontSize: 16,
     marginBottom: 18,
+    width: 55
   },
   text01: {
     fontSize: 14,

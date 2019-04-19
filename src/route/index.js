@@ -38,10 +38,10 @@ const SettingStack = createStackNavigator({
  })
 // tab
 const TabNavigator = createBottomTabNavigator({
-  Pages: {
-    screen: PageStack,
+  HomeTab: {
+    screen: HomeStack,
     navigationOptions:({navigation}) => ({
-      tabBarLabel:'Pages'
+      tabBarLabel:'我的首页'
     })
   },
   Video: {
@@ -54,13 +54,6 @@ const TabNavigator = createBottomTabNavigator({
     screen: Person,
     navigationOptions:({navigation}) => ({
       tabBarLabel:'Person'
-    })
-  },
-  
-  HomeTab: {
-    screen: HomeStack,
-    navigationOptions:({navigation}) => ({
-      tabBarLabel:'我的首页'
     })
   },
   Settings: {
@@ -111,10 +104,19 @@ const TabNavigator = createBottomTabNavigator({
 // 抽屉导航
 const DrawerNavigator = createDrawerNavigator(
   { 
+    PageDraw: {
+      screen: PageStack,
+      navigationOptions:({navigation}) => ({
+        drawerLabel:'附近超市',
+        drawerIcon: ({ tintColor }) => (
+          <Ionicons name={'ios-information-circle'} size={24}></Ionicons>
+        ),
+      })
+    },
     Home: {
       screen: TabNavigator,
       navigationOptions:({navigation}) => ({
-        drawerLabel:'我上搜索',
+        drawerLabel:'多彩生活',
         drawerIcon: ({ tintColor }) => (
           <Ionicons name={'ios-information-circle'} size={24}></Ionicons>
         ),

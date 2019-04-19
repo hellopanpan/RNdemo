@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text ,StyleSheet, TouchableWithoutFeedback, TouchableOpacity, ScrollView, Image} from 'react-native';
 import {connect} from "react-redux"
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import { SafeAreaView } from 'react-navigation';
 import ShopBottom from '../components/shop/shopBottom'
 
 class shopName extends Component {
@@ -36,33 +36,35 @@ class shopName extends Component {
     const { navigation } = this.props;
     const item = navigation.getParam('item', {});
     return (
-      <View style={{height: '100%',flex: 1,backgroundColor: '#efefef', }}>
-        <ScrollView style={{flex: 1}}>
-          <View style={styles.wrap}>
-          <View style={styles.item}>
-            <Image source={require('../assets/images/shop.jpg')} style={styles.goodspic}></Image>
-            <View style={styles.goodsright}>
-              <Text style={styles.goodstitle} numberOfLines={2} ellipsizeMode="tail">{item.name}</Text>
-              <View style={styles.goodsbottom}>
-                <Text style={styles.goodsprice}>￥{item.price}</Text>
-                <View style={styles.btns}>
-                  <TouchableOpacity style={styles.reducebtn} onPress={this._reduceBtn.bind(this, item._id)}>
-                    <Ionicons name={'ios-remove'} size={22} style={{color: '#fff'}}></Ionicons>
-                  </TouchableOpacity>
-                  <Text>{item.count}</Text>
-                  <TouchableOpacity style={styles.addbtn} onPress={this._addBtn.bind(this, item._id)}>
-                    <Ionicons name={'ios-add'} size={22} style={{color: '#fff'}}></Ionicons>
-                  </TouchableOpacity>
+      <SafeAreaView style={{height: '100%',flex: 1,backgroundColor: '#efefef', }}>
+        <View style={{height: '100%',flex: 1,backgroundColor: '#efefef', }}>
+          <ScrollView style={{flex: 1}}>
+            <View style={styles.wrap}>
+            <View style={styles.item}>
+              <Image source={require('../assets/images/shop.jpg')} style={styles.goodspic}></Image>
+              <View style={styles.goodsright}>
+                <Text style={styles.goodstitle} numberOfLines={2} ellipsizeMode="tail">{item.name}</Text>
+                <View style={styles.goodsbottom}>
+                  <Text style={styles.goodsprice}>￥{item.price}</Text>
+                  <View style={styles.btns}>
+                    <TouchableOpacity style={styles.reducebtn} onPress={this._reduceBtn.bind(this, item._id)}>
+                      <Ionicons name={'ios-remove'} size={22} style={{color: '#fff'}}></Ionicons>
+                    </TouchableOpacity>
+                    <Text>{item.count}</Text>
+                    <TouchableOpacity style={styles.addbtn} onPress={this._addBtn.bind(this, item._id)}>
+                      <Ionicons name={'ios-add'} size={22} style={{color: '#fff'}}></Ionicons>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
             </View>
+            </View>
+          </ScrollView>
+          <View style={styles.bottom}>
+          <ShopBottom goNext={this.goNext.bind(this)}></ShopBottom>
           </View>
-          </View>
-        </ScrollView>
-        <View style={styles.bottom}>
-        <ShopBottom goNext={this.goNext.bind(this)}></ShopBottom>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

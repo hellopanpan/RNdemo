@@ -45,7 +45,7 @@ class HomeScreen extends React.Component {
   render() {
     const data = this.props.data || "null";
     return (
-      <SafeAreaView style={{flex: 1, height: '100%'}}>
+      <SafeAreaView style={{flex: 1, height: '100%', backgroundColor: '#efefef'}}>
         <ShopHeader></ShopHeader>
         <View style={{backgroundColor: 'blue', flex: 1, display: 'flex', flexDirection: 'row'}}>
           <View style={styles.left}>
