@@ -34,16 +34,10 @@ class HomeScreen extends React.Component {
       type: 'INITSHOP',
       list: shopdata
     })
-    Alert.alert(
-      'Alert Title',
-      'My Alert Msg',
-      [
-        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ],
-      { cancelable: false }
-    )
+    // Alert.alert(
+    //   'Alert Title',
+    //   'My Alert Msg'
+    // )
   };
   // 去往结算页
   goNext() {
