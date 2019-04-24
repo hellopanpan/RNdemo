@@ -11,6 +11,9 @@ import Person from '../views/personal'
 import Video from '../views/Video'
 import shopComfirm from '../views/shopComfirm'
 import shopDetail from '../views/shopDetail'
+import my from '../views/My'
+import search from '../views/Search'
+import order from '../views/Order'
 // 一般stack
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -32,9 +35,11 @@ const SettingStack = createStackNavigator({
 });
  const PageStack = createStackNavigator({
     Shop: Shop,
+    Order: order,
     ShopComfirm: shopComfirm,
-    ShopDetail: shopDetail
-    
+    ShopDetail: shopDetail,
+    Search: search,
+    My: my,
  })
 // tab
 const TabNavigator = createBottomTabNavigator({

@@ -190,7 +190,8 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   btnno: {
-    backgroundColor: 'gray',
+    backgroundColor: 'tomato',
+    opacity: 0.6
   },
   text001: {
     fontSize: 12,

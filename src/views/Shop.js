@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button, Switch,ScrollView, Picker, StyleSheet,TextInput, FlatList, SectionList, Image, TouchableOpacity} from "react-native";
+import { View, Text, Button, Alert, Switch,ScrollView, Picker, StyleSheet,TextInput, FlatList, SectionList, Image, TouchableOpacity} from "react-native";
 import { SafeAreaView } from 'react-navigation';
 import {connect} from "react-redux"
 import * as Api from '../api/index'
@@ -13,7 +13,8 @@ import shopdata from '../components/shop/shopdata'
 
 class HomeScreen extends React.Component {
   static navigationOptions = ({navigation}) => ({
-    header: null
+    header: null,
+    headerBackTitle: '首页',
   });
   constructor(props) {
     super(props);
@@ -33,6 +34,16 @@ class HomeScreen extends React.Component {
       type: 'INITSHOP',
       list: shopdata
     })
+    Alert.alert(
+      'Alert Title',
+      'My Alert Msg',
+      [
+        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      { cancelable: false }
+    )
   };
   // 去往结算页
   goNext() {
@@ -42,11 +53,19 @@ class HomeScreen extends React.Component {
   goDetail(item) {
     this.props.navigation.navigate('ShopDetail',{item: item})
   };
+  // my
+  goMy() {
+    this.props.navigation.navigate('My')
+  };
+  // search
+  goSearch() {
+    this.props.navigation.navigate('Search')
+  }
   render() {
     const data = this.props.data || "null";
     return (
-      <SafeAreaView style={{flex: 1, height: '100%', backgroundColor: '#efefef'}}>
-        <ShopHeader></ShopHeader>
+      <SafeAreaView style={{flex: 1, height: '100%', backgroundColor: '#fff'}}>
+        <ShopHeader goMy={this.goMy.bind(this)} goSearch={this.goSearch.bind(this)}></ShopHeader>
         <View style={{backgroundColor: 'blue', flex: 1, display: 'flex', flexDirection: 'row'}}>
           <View style={styles.left}>
             <ShopSort></ShopSort>
@@ -67,7 +86,9 @@ export default connect((state,props)=>{
 const styles = StyleSheet.create({
   left: {
     width: 90, height: '100%',
-    backgroundColor: '#efefef'
+    backgroundColor: '#fff',
+    borderRightWidth: 1,
+    borderColor: '#efefef'
   },
   right:{
     backgroundColor: '#fff',

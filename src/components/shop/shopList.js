@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "400",
     marginBottom: 10,
+    color: '#444'
   },
   banner: {
     height: 90,

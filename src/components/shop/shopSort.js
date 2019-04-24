@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   itemactiveborder: {
-    backgroundColor: '#3880ff',
+    backgroundColor: 'tomato',
     width: 4,
     height: 20,
     borderRadius: 3,
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   itemactivetext: {
-    color: '#3880ff',
+    color: 'tomato',
   },
   icon: {
     width: 12,

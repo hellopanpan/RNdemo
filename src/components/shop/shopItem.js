@@ -31,7 +31,7 @@ class SortItem extends Component {
           <Image source={require('../../assets/images/shop.jpg')} style={styles.goodspic}></Image>
         </TouchableOpacity>
         <View style={styles.goodsright}>
-          <TouchableOpacity onPress={this._onPress}>
+          <TouchableOpacity >
             <Text style={styles.goodstitle} numberOfLines={2} ellipsizeMode="tail">{this.props.item.name}</Text>
           </TouchableOpacity>
           <View style={styles.goodsbottom}>
@@ -94,9 +94,10 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   goodstitle: {
-    lineHeight: 20,
-    fontSize: 14,
-    marginBottom: 20,
+    lineHeight: 16,
+    fontSize: 13,
+    marginBottom: 24,
+    color: '#444'
   },
   goodsbottom: {
     flexDirection: 'row',
