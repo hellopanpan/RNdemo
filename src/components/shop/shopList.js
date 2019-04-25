@@ -52,7 +52,6 @@ class shopSort extends Component {
   };
   render() {
     let dataAll = this.props.shoplist;
-    console.log(this.props)
     let sortss = []
     dataAll.map(item => {
       if(item.active) {

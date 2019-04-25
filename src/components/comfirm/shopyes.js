@@ -25,7 +25,7 @@ class shopBottom extends Component {
           <Text>待支付： ￥{price}</Text>
           <Text style={styles.text001}>已达起售数量</Text>
         </View>
-        <TouchableOpacity onPress={this.props.goNext}>
+        <TouchableOpacity onPress={this.props.PayOk}>
           <View style={styles.btns}>
             <Text style={styles.btnsText}>提交订单</Text>
           </View>

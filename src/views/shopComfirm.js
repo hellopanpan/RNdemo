@@ -15,7 +15,10 @@ class shopName extends Component {
     this.state = {
     };
   }
-
+  PayOk() {
+    this.props.dispatch({type: 'REMOVESHOPCOUNT'})
+    this.props.navigation.navigate('PayOk')
+  };
   render() {
     return (
       <SafeAreaView style={{height: '100%',flex: 1,backgroundColor: '#efefef',}}>
@@ -26,9 +29,8 @@ class shopName extends Component {
               <List></List>
             </View>
           </ScrollView>
-          
           <View style={styles.bottom}>
-            <ShopYes></ShopYes>
+            <ShopYes PayOk={this.PayOk.bind(this)}></ShopYes>
           </View>
         </View>
       </SafeAreaView>

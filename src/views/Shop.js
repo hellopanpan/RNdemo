@@ -12,10 +12,14 @@ import ShopBottom from '../components/shop/shopBottom'
 import shopdata from '../components/shop/shopdata'
 
 class HomeScreen extends React.Component {
-  static navigationOptions = ({navigation}) => ({
-    header: null,
-    headerBackTitle: '首页',
-  });
+  static navigationOptions = ({navigation}) => {
+    const { params } = navigation.state;
+    return {
+      header: null,
+      // title: 'buy',
+      headerBackTitle: '首页',
+    }
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +30,8 @@ class HomeScreen extends React.Component {
       text: '', 
       modalVisible: false,
       switch: true,
-      selectItem: {}
+      selectItem: {},
+      buy: false
     };
   };
   componentDidMount() {
@@ -54,7 +59,7 @@ class HomeScreen extends React.Component {
   // search
   goSearch() {
     this.props.navigation.navigate('Search')
-  }
+  };
   render() {
     const data = this.props.data || "null";
     return (
@@ -65,10 +70,10 @@ class HomeScreen extends React.Component {
             <ShopSort></ShopSort>
           </View>
           <View style={styles.right}>
-            <ShopList goDetail={this.goDetail.bind(this)}></ShopList>
+            <ShopList goDetail={this.goDetail.bind(this)} ></ShopList>
           </View>
         </View>
-        <ShopBottom goNext={this.goNext.bind(this)}></ShopBottom>
+        <ShopBottom goNext={this.goNext.bind(this)} ></ShopBottom>
       </SafeAreaView>  
     );
   }
