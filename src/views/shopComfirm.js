@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Location from '../components/comfirm/location'
 import List from '../components/comfirm/list'
 import ShopYes from '../components/comfirm/shopyes'
+
 class shopName extends Component {
   static navigationOptions = ({navigation}) => ({
     title: '确认订单',
@@ -18,13 +19,20 @@ class shopName extends Component {
   PayOk() {
     // 订单生成
     let select = []
-    this.props.shoplist.map(item1 => {
+    let popArr = [].concat(this.props.shoplist)
+    popArr.map(item1 => {
       item1.childs.map(item2 => {
         if (item2.count > 0) {
-          select.push(item2)
+          // 复制
+          let itemCopy = {}
+          for (var key in item2) {
+            itemCopy[key] = item2[key]
+          }
+          select.push(itemCopy)
         }
       })
     });
+    
     this.props.dispatch({
       type: 'ADDBUYLIST',
       list: {
@@ -33,9 +41,8 @@ class shopName extends Component {
     })
     // 跳转
     setTimeout(() => {
-      this.props.dispatch({type: 'REMOVESHOPCOUNT'})
       this.props.navigation.navigate('PayOk')
-    }, 100)
+    }, 200)
   };
   render() {
     return (

@@ -14,14 +14,17 @@ class List extends Component {
   }
   render() {
     let lists = this.props.buylist
+    console.log(lists)
     let listArr = []
     lists.map(item1 => {
       let price = 0
+      let count = 0
       item1.list.map(item2 => {
-        price += item2.price
+        price += item2.price * item2.count
+        count += item2.count
       })
       listArr.push({
-        length: item1.list.length,
+        length: count,
         name: item1.list[0].name,
         price: price
       })

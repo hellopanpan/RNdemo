@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
+import {connect} from "react-redux"
 class PayOk extends Component {
   static navigationOptions = ({navigation}) => ({
     header: null
@@ -10,6 +10,9 @@ class PayOk extends Component {
     super(props);
     this.state = {
     };
+  };
+  componentDidMount() {
+    this.props.dispatch({type: 'REMOVESHOPCOUNT'})
   }
   goToOrder() {
     this.props.navigation.navigate('Order')
@@ -86,4 +89,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
   }
 })
-export default PayOk;
+export default connect((state,props)=>{
+  return state
+})(PayOk);
