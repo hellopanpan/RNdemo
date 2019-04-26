@@ -16,8 +16,26 @@ class shopName extends Component {
     };
   }
   PayOk() {
-    this.props.dispatch({type: 'REMOVESHOPCOUNT'})
-    this.props.navigation.navigate('PayOk')
+    // 订单生成
+    let select = []
+    this.props.shoplist.map(item1 => {
+      item1.childs.map(item2 => {
+        if (item2.count > 0) {
+          select.push(item2)
+        }
+      })
+    });
+    this.props.dispatch({
+      type: 'ADDBUYLIST',
+      list: {
+        list: select
+      }
+    })
+    // 跳转
+    setTimeout(() => {
+      this.props.dispatch({type: 'REMOVESHOPCOUNT'})
+      this.props.navigation.navigate('PayOk')
+    }, 100)
   };
   render() {
     return (

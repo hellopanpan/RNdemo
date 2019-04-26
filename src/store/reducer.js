@@ -65,9 +65,24 @@ const shoplist = (state = [], action) => {
       return state;
   }
 };
+const buylist = (state = [], action) => {
+  switch (action.type) {
+    case 'ADDBUYLIST':
+      console.log(action.list)
+      state.push(action.list)
+      return state;
+    case 'REMOVEBUYLIST':
+      let stateArr = [].concat(state)
+      stateArr.splice(action.index, 1)
+      return stateArr
+    default:
+      return state;
+  }
+}
 let reducer	 = combineReducers({
   reducer1, 
   reducer2,
-  shoplist
+  shoplist,
+  buylist
 })
 export default reducer;

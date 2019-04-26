@@ -13,19 +13,32 @@ class List extends Component {
     };
   }
   render() {
+    let lists = this.props.buylist
+    let listArr = []
+    lists.map(item1 => {
+      let price = 0
+      item1.list.map(item2 => {
+        price += item2.price
+      })
+      listArr.push({
+        length: item1.list.length,
+        name: item1.list[0].name,
+        price: price
+      })
+    })
     return (
       <View style={styles.wrap}>
-        {this.state.item.map((item, index) => {
+        {listArr.map((item, index) => {
           return <View style={styles.item} key={index}>
             <View style={styles.top}>
-              <Text style={styles.text01} numberOfLines={1} ellipsizeMode={'tail'} >雪花啤酒等雪花啤酒等雪花啤酒等雪花啤酒等雪花啤酒等</Text>
-              <Text style={styles.text02}>共7件商品</Text>
+              <Text style={styles.text01} numberOfLines={1} ellipsizeMode={'tail'} >{item.name}等</Text>
+              <Text style={styles.text02}>共{item.length}件商品</Text>
               <FontAwesome name={'angle-right'} size={14}></FontAwesome>
             </View>
             <Text style={ styles.time}>2018-7-1 18:21</Text>
             <View style={styles.bottom}>
-              <Text style={styles.text03}>总价¥28.90</Text>
-              <TouchableOpacity style={styles.btn01}>
+              <Text style={styles.text03}>总价¥{item.price}</Text>
+              <TouchableOpacity style={styles.btn01} onPress={()=>{this.props.cancel(index)}}>
                 <Text style={styles.text04}>取消</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.btn02}>
@@ -99,4 +112,5 @@ const styles = StyleSheet.create({
     fontSize: 13,
   }
 })
+
 export default List;
