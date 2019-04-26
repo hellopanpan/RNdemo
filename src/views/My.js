@@ -4,7 +4,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 class MY extends Component {
   static navigationOptions = ({navigation}) => ({
-    title: '我的'
+    title: '个人中心'
   });
   constructor(props) {
     super(props);
@@ -19,7 +19,7 @@ class MY extends Component {
         name: '收货地址',
         icon: 'compass',
         size: 22,
-        page: 'location',
+        page: 'Adress',
       },
       {
         name: '用户反馈',

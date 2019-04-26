@@ -15,6 +15,7 @@ import my from '../views/My'
 import search from '../views/Search'
 import order from '../views/Order'
 import payOk from '../views/PayOk'
+import Adress from '../views/Adress'
 // 一般stack
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -35,7 +36,6 @@ const SettingStack = createStackNavigator({
     Setting: Setting
 });
  const PageStack = createStackNavigator({
-    
     Shop: Shop,
     Order: order,
     ShopComfirm: shopComfirm,
@@ -43,6 +43,8 @@ const SettingStack = createStackNavigator({
     Search: search,
     PayOk: payOk,
     My: my,
+    Adress: Adress,
+    
  })
 // tab
 const TabNavigator = createBottomTabNavigator({
