@@ -11,17 +11,23 @@ class list extends Component {
   
   render() {
     return (
-      <TouchableOpacity>
-        <View style={styles.wrap}>
-          <View style={styles.left}>
-            <Text style={styles.text01}> 四川成都高新区 </Text>
-            <Text style={styles.text02}> 潘潘 18674389364 </Text>
-        </View>
-        <TouchableOpacity style={styles.right}>
-          <FontAwesome name={'pencil-square-o'} size={20}></FontAwesome>
-        </TouchableOpacity>
-        </View>
-      </TouchableOpacity>
+      <View>
+        {
+          this.props.list.map(item => {
+            return <TouchableOpacity key={item.id} onPress={()=> {this.props.selectAddress(item)}}>
+              <View style={styles.wrap}>
+                <View style={styles.left}>
+                  <Text style={styles.text02}> {item.name} {item.phone} </Text>
+                  <Text style={styles.text01}> {item.address} </Text>
+              </View>
+              <TouchableOpacity style={styles.right} onPress={() => {this.props.editit(item)}}>
+                <FontAwesome name={'pencil-square-o'} size={20}></FontAwesome>
+              </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+          })
+      }
+      </View>
     );
   }
 }

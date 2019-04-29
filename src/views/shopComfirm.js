@@ -17,6 +17,11 @@ class shopName extends Component {
     };
   }
   PayOk() {
+    // 判断是否填写地址
+    if (!(this.props.selectAddress.id >= 0) ){
+      alert('请完善地址！');
+      return
+    }
     // 订单生成
     let select = []
     let popArr = [].concat(this.props.shoplist)
@@ -44,13 +49,17 @@ class shopName extends Component {
       this.props.navigation.navigate('PayOk')
     }, 200)
   };
+  // 跳转地址也
+  goAddress() {
+    this.props.navigation.navigate('Adress')
+  }
   render() {
     return (
       <SafeAreaView style={{height: '100%',flex: 1,backgroundColor: '#efefef',}}>
         <View style={{height: '100%',flex: 1,backgroundColor: '#efefef', }}>
           <ScrollView style={{flex: 1}}>
             <View style={styles.wrap}>
-              <Location></Location>
+              <Location goAddress={this.goAddress.bind(this)}></Location>
               <List></List>
             </View>
           </ScrollView>

@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent:  'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.9)',
+    backgroundColor: 'rgba(255,255,255,0.95)',
     height: '100%',
     width: '100%',
     position: 'absolute', 

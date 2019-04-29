@@ -31,7 +31,7 @@ class MY extends Component {
     };
   }
   goNext(page) {
-    this.props.navigation.navigate(page)
+    this.props.navigation.navigate(page, {page: true})
   };
   render() {
     return (

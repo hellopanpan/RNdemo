@@ -87,11 +87,51 @@ const location = (state = '定位中...', action) => {
       return state;
   }
 };
+const address = (state = [], action) => {
+  switch (action.type) {
+    case 'ADDADDRESS':
+      let stateAdressCopy1 = [].concat(state)
+      let objccp = Object.assign({id: state.length}, action.address)
+      stateAdressCopy1.push(objccp)
+      return stateAdressCopy1;
+    case 'UPDATEADDRESS':
+      let addressArr = [].concat(state)
+      state.map((item, index) => {
+        if(item.id == action.address.id) {
+          addressArr.splice(index, 1, action.address)
+        }
+      }) 
+      return addressArr;
+    case 'DELETEADDRESS':
+      let addressArr2 = [].concat(state)
+      let indexa = -1;
+      addressArr2.map((item, index) => {
+        if(item.id == action.address.id) {
+          indexa = index
+        }
+      })
+      addressArr2.splice(indexa, 1);
+      return addressArr2;
+    default:
+      return state;
+  };
+};
+const selectAddress = (state = {}, action) => {
+  switch (action.type) {
+    case 'SELECTADDRESS':
+      let selectobj = action.address; 
+      return selectobj;
+    default:
+      return state;
+  }
+};
 let reducer	 = combineReducers({
   reducer1, 
   reducer2,
   shoplist,
   buylist,
-  location
+  location,
+  address,
+  selectAddress
 })
 export default reducer;

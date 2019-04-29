@@ -8,12 +8,28 @@ class Addlist extends Component {
       name: '',
       phone: '',
       adress: '',
+      id: -1
     };
   };
   saveit() {
     if (!(this.state.name && this.state.phone && this.state.adress)) {
       alert('请完善地址')
+    } else {
+      if (this.state.id >= 0) { // 修改
+        this.props.EditList(this.state.id, this.state.name, this.state.phone, this.state.adress)
+      } else { //新增
+        this.props.addList(this.state.name, this.state.phone, this.state.adress)
+      }
+      
     }
+  };
+  componentDidMount() {
+    this.setState({
+      name: this.props.item.name,
+      phone: this.props.item.phone,
+      adress: this.props.item.address,
+      id: this.props.item.id
+    })
   };
   render() {
     return (
@@ -22,7 +38,6 @@ class Addlist extends Component {
             <Text style={styles.text01}>收货人：</Text>
             <TextInput
               style={{height: 30, width: 260}}
-              
               maxLength={10}
               placeholder={'亲填写收货人姓名'}
               onChangeText={(name) => this.setState({name})}
