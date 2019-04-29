@@ -2,21 +2,65 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput , TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {connect} from "react-redux"
 class shopHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      LocalPosition: '定位中...'
     };
   }
-
+  //  地址你解析
+  getPosName(latitude = 39.984154, longitude = 116.307490) {
+    fetch(`https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=LYIBZ-LAG33-Y6C3R-363NH-AQRVK-SXBF5&get_poi=0`,{
+      method: 'GET',
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      // this.setState({LocalPosition: responseJson.result.address})
+      //todo success
+      this.props.dispatch({
+        type: 'UPDATELOCATION',
+        location: responseJson.result.address || '重新获取定位'
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+      //todo error
+    });
+  }
+  // 获取定位
+  getlocal() {
+    navigator.geolocation.getCurrentPosition(
+      val => {
+        let ValInfo =
+          '速度：' + val.coords.speed + '\n经度：' + val.coords.longitude +
+          '\n纬度：' +val.coords.latitude +'\n准确度：' +val.coords.accuracy +
+          '\n行进方向：' + val.coords.heading + '\n海拔：' + val.coords.altitude +
+          '\n海拔准确度：' + val.coords.altitudeAccuracy + '\n时间戳：' + val.timestamp;
+        this.getPosName(val.coords.latitude, val.coords.longitude) 
+      },
+      val => {
+        let ValInfo = '获取坐标失败：' + val;
+        this.setState({ LocalPosition: ValInfo }); //如果为空的话 没允许开启定位服务
+      },
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
+  };
+  componentDidMount() {
+    //  获取位置
+    this.getlocal()
+  }
   render() {
     return (
       <View style={{display: 'flex', flexDirection: 'row', paddingLeft: 10,marginTop: 10}}>
-        <View style={styles.top} >
-          <FontAwesome style={styles.topIcon} name={'map-marker'} size={28}></FontAwesome>
-          <Text style={styles.topText} numberOfLines={1} ellipsizeMode="tail" >天府软件园G区3栋7楼</Text>
-          {/* <Ionicons name={'ios-arrow-down'} size={22} style={{color: '#999'}}></Ionicons> */}
-        </View>
+        <TouchableOpacity onPress={this.props.goLocation}>
+          <View style={styles.top} >
+              <FontAwesome style={styles.topIcon} name={'map-marker'} size={28}></FontAwesome>
+              <Text style={styles.topText} numberOfLines={1} ellipsizeMode="tail" >{ this.props.location}</Text>
+              {/* <Ionicons name={'ios-arrow-down'} size={22} style={{color: '#999'}}></Ionicons> */}
+            </View>
+        </TouchableOpacity>
+        
         <TouchableOpacity onPress={this.props.goSearch}>
           <View style={styles.inputTop}>
             <Ionicons name={'ios-search'} size={20} style={styles.inputTopText}></Ionicons>
@@ -34,7 +78,10 @@ class shopHeader extends Component {
   }
 }
 
-export default shopHeader;
+export default connect((state,props)=>{
+  return state
+})(shopHeader);
+
 const styles = StyleSheet.create({
   left: {
     width: 90, height: '100%',

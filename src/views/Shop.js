@@ -11,6 +11,8 @@ import ShopList from '../components/shop/shopList'
 import ShopBottom from '../components/shop/shopBottom'
 import shopdata from '../components/shop/shopdata'
 
+import Geolocation from 'Geolocation';
+
 class HomeScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
     const { params } = navigation.state;
@@ -31,7 +33,8 @@ class HomeScreen extends React.Component {
       modalVisible: false,
       switch: true,
       selectItem: {},
-      buy: false
+      buy: false,
+     
     };
   };
   componentDidMount() {
@@ -39,10 +42,6 @@ class HomeScreen extends React.Component {
       type: 'INITSHOP',
       list: shopdata
     })
-    // Alert.alert(
-    //   'Alert Title',
-    //   'My Alert Msg'
-    // )
   };
   // 去往结算页
   goNext() {
@@ -60,11 +59,15 @@ class HomeScreen extends React.Component {
   goSearch() {
     this.props.navigation.navigate('Search')
   };
+  // go location
+  goLocation() {
+    this.props.navigation.navigate('Location')
+  }
   render() {
     const data = this.props.data || "null";
     return (
       <SafeAreaView style={{flex: 1, height: '100%', backgroundColor: '#fff'}}>
-        <ShopHeader goMy={this.goMy.bind(this)} goSearch={this.goSearch.bind(this)}></ShopHeader>
+        <ShopHeader goMy={this.goMy.bind(this)} goLocation={this.goLocation.bind(this)} goSearch={this.goSearch.bind(this)} ></ShopHeader>
         <View style={{backgroundColor: 'blue', flex: 1, display: 'flex', flexDirection: 'row'}}>
           <View style={styles.left}>
             <ShopSort></ShopSort>

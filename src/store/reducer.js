@@ -79,10 +79,19 @@ const buylist = (state = [], action) => {
       return state;
   }
 }
+const location = (state = '定位中...', action) => {
+  switch (action.type) {
+    case 'UPDATELOCATION':
+      return action.location;
+    default:
+      return state;
+  }
+};
 let reducer	 = combineReducers({
   reducer1, 
   reducer2,
   shoplist,
-  buylist
+  buylist,
+  location
 })
 export default reducer;
