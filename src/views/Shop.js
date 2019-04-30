@@ -10,6 +10,7 @@ import ShopSort from '../components/shop/shopSort'
 import ShopList from '../components/shop/shopList'
 import ShopBottom from '../components/shop/shopBottom'
 import shopdata from '../components/shop/shopdata'
+import LoadingUtil from "../lib/LoadingUtil";
 
 import Geolocation from 'Geolocation';
 
@@ -42,6 +43,9 @@ class HomeScreen extends React.Component {
       type: 'INITSHOP',
       list: shopdata
     })
+    setTimeout(() => {
+      LoadingUtil.showLoading('加载...', 1000);
+    }, 100)
   };
   // 去往结算页
   goNext() {
