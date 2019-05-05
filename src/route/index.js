@@ -36,6 +36,7 @@ const HomeStack = createStackNavigator({
 const SettingStack = createStackNavigator({
     Setting: Setting
 });
+// 超市
  const PageStack = createStackNavigator({
     
     Shop: Shop,
@@ -114,9 +115,29 @@ const TabNavigator = createBottomTabNavigator({
   },
 });
 
+// 抖音
+const douStack = createStackNavigator({
+    
+  Video: {
+    screen: Video,
+    navigationOptions:({navigation}) => ({
+      tabBarLabel:'Shot video'
+    })
+  },
+  
+})
 // 抽屉导航
 const DrawerNavigator = createDrawerNavigator(
   { 
+    Dou: {
+      screen: douStack,
+      navigationOptions:({navigation}) => ({
+        title: '抖音',
+        drawerIcon: ({ tintColor }) => (
+          <Ionicons name={'ios-information-circle'} size={24}></Ionicons>
+        )
+      }),
+    },
     PageDraw: {
       screen: PageStack,
       navigationOptions:({navigation}) => ({
@@ -135,12 +156,7 @@ const DrawerNavigator = createDrawerNavigator(
         ),
       })
     },
-    draw: {
-      screen: Draw,
-      navigationOptions:({navigation}) => ({
-        title: '11111'
-      })
-    }
+    
   },
   {
     // contentComponent: Me,   
