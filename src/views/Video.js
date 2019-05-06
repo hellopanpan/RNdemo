@@ -7,7 +7,7 @@ import Video from 'react-native-video';
 import VedioSwiper from '../components/vedioSwiper'
 export default class HomeScreen2 extends React.Component {
   static navigationOptions = ({navigation,screenProps}) => ({  
-      headerTitle: '企业服务'
+      header: null
   });
   constructor(props) {
     super(props);
