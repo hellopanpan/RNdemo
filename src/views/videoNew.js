@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Video from 'react-native-video';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import VideoTab from '../components/video/tab'
+import VideoLove from '../components/video/lover'
 import {
   StyleSheet,
   View,
@@ -185,6 +186,9 @@ export default class App extends Component {
             />
             </TouchableWithoutFeedback>
             {play}
+            <View style={styles.right}>
+              <VideoLove></VideoLove>
+            </View>
           </Animated.View>
           })
         }
@@ -225,6 +229,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: "50%",
     left: '50%',
+    opacity: 0.8
+  },
+  right: {
+    position: 'absolute',
+    bottom: 80,
+    right: 10,
+    height: 250,
+    width: 60,
     opacity: 0.8
   }
 });
