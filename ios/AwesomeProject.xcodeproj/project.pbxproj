@@ -1596,7 +1596,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.AwesomeProject2222;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Awesomepanpan2;
 				PRODUCT_NAME = AwesomeProject;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1624,7 +1624,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.AwesomeProject2222;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Awesomepanpan2;
 				PRODUCT_NAME = AwesomeProject;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
