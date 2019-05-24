@@ -1,4 +1,4 @@
-# RN demo 潘潘之家
+# RN：潘潘之家
 
 ## run
 react-native run-ios
