@@ -6,3 +6,6 @@ react-native run-ios
 ## deme 概述
 1，抖音滑屏功能
 2，app购物流程
+
+## show
+![img](https://github.com/hellopanpan/RNdemo/blob/master/video.gif)
